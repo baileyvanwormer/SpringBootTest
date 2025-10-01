@@ -12,3 +12,4 @@ A Spring Boot web application that integrates with the [Agify.io API](https://ag
 - **Thymeleaf** (Template Engine)
 - **Bootstrap 5** (Frontend Framework)
 - **RestTemplate** (HTTP Client)
+- **JUnit 5** (Unit Tests)

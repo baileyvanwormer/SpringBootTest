@@ -1,0 +1,115 @@
+package com.example.agifyapp.service;
+
+import com.example.agifyapp.model.AgifyResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class AgifyServiceUnitTest {
+
+    @Mock
+    private RestTemplate restTemplate;
+
+    @InjectMocks
+    private AgifyService agifyService;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(agifyService, "agifyApiUrl", "https://api.agify.io");
+    }
+
+    @Test
+    void testGetAgeByName_Success() {
+        // Arrange
+        AgifyResponse expectedResponse = new AgifyResponse("John", 30, 1000, null);
+        when(restTemplate.getForObject(anyString(), eq(AgifyResponse.class)))
+                .thenReturn(expectedResponse);
+
+        // Act
+        AgifyResponse result = agifyService.getAgeByName("John");
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("John", result.getName());
+        assertEquals(30, result.getAge());
+        assertEquals(1000, result.getCount());
+        verify(restTemplate).getForObject("https://api.agify.io?name=John", AgifyResponse.class);
+    }
+
+    @Test
+    void testGetAgeByNameAndCountry_Success() {
+        // Arrange
+        AgifyResponse expectedResponse = new AgifyResponse("John", 30, 1000, "US");
+        when(restTemplate.getForObject(anyString(), eq(AgifyResponse.class)))
+                .thenReturn(expectedResponse);
+
+        // Act
+        AgifyResponse result = agifyService.getAgeByNameAndCountry("John", "US");
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("John", result.getName());
+        assertEquals(30, result.getAge());
+        assertEquals(1000, result.getCount());
+        assertEquals("US", result.getCountryId());
+        verify(restTemplate).getForObject("https://api.agify.io?name=John&country_id=US", AgifyResponse.class);
+    }
+
+    @Test
+    void testGetAgeByName_ApiException() {
+        // Arrange
+        when(restTemplate.getForObject(anyString(), eq(AgifyResponse.class)))
+                .thenThrow(new RestClientException("API Error"));
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            agifyService.getAgeByName("John");
+        });
+
+        assertTrue(exception.getMessage().contains("Error calling Agify API"));
+        verify(restTemplate).getForObject("https://api.agify.io?name=John", AgifyResponse.class);
+    }
+
+    @Test
+    void testGetAgeByNameAndCountry_ApiException() {
+        // Arrange
+        when(restTemplate.getForObject(anyString(), eq(AgifyResponse.class)))
+                .thenThrow(new RestClientException("API Error"));
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            agifyService.getAgeByNameAndCountry("John", "US");
+        });
+
+        assertTrue(exception.getMessage().contains("Error calling Agify API"));
+        verify(restTemplate).getForObject("https://api.agify.io?name=John&country_id=US", AgifyResponse.class);
+    }
+
+    @Test
+    void testGetAgeByName_WithSpecialCharacters() {
+        // Arrange
+        AgifyResponse expectedResponse = new AgifyResponse("José", 25, 500, null);
+        when(restTemplate.getForObject(anyString(), eq(AgifyResponse.class)))
+                .thenReturn(expectedResponse);
+
+        // Act
+        AgifyResponse result = agifyService.getAgeByName("José");
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("José", result.getName());
+        verify(restTemplate).getForObject("https://api.agify.io?name=José", AgifyResponse.class);
+    }
+}
