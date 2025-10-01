@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("AgifyResponse Model Tests")
-class AgifyResponseTest {
+public class AgifyResponseTest {
 
     private AgifyResponse agifyResponse;
 

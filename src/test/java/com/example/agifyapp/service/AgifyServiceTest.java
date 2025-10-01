@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource(properties = {
     "agify.api.url=https://api.agify.io"
 })
-class AgifyServiceTest {
+public class AgifyServiceTest {
 
     @Test
     void testAgifyResponseModel() {

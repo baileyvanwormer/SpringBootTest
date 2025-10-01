@@ -1,0 +1,8 @@
+com/example/agifyapp/TestSuite.class
+com/example/agifyapp/service/AgifyServiceUnitTest.class
+com/example/agifyapp/service/AgifyServiceIntegrationTest.class
+com/example/agifyapp/AgifyAppApplicationTests.class
+com/example/agifyapp/AgifyAppApplicationTest.class
+com/example/agifyapp/controller/AgifyControllerTest.class
+com/example/agifyapp/model/AgifyResponseTest.class
+com/example/agifyapp/service/AgifyServiceTest.class

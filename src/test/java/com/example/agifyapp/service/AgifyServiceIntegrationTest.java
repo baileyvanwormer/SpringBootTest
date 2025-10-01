@@ -8,11 +8,11 @@ import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {
     "agify.api.url=https://api.agify.io"
 })
-class AgifyServiceIntegrationTest {
+public class AgifyServiceIntegrationTest {
 
     @Autowired
     private AgifyService agifyService;
