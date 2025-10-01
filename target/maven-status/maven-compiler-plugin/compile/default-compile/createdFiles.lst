@@ -1,0 +1,4 @@
+com/example/agifyapp/AgifyAppApplication.class
+com/example/agifyapp/controller/AgifyController.class
+com/example/agifyapp/model/AgifyResponse.class
+com/example/agifyapp/service/AgifyService.class

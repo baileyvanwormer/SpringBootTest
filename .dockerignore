@@ -1,0 +1,11 @@
+target/
+!target/agify-app-1.0.0.jar
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+.idea/
+.vscode/
+*.iml
+.DS_Store
