@@ -1,7 +1,7 @@
 /* Custom styles for Agify Age Estimator */
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #cfcfd1 0%, #fffeff 100%);
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -27,9 +27,9 @@ body {
 .age-number {
     font-size: 4rem;
     font-weight: bold;
-    color: #28a745;
+    color: #000000;
     line-height: 1;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 .age-label {
@@ -79,8 +79,8 @@ body {
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    border-color: #5caaee;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }
 
 .alert {
@@ -94,7 +94,7 @@ body {
 }
 
 .card-footer a {
-    color: #667eea;
+    color: #5caaee;
     text-decoration: none;
 }
 
