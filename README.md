@@ -1,4 +1,6 @@
-# Agify Age Estimator - Spring Boot Application
+# Agify Age Estimator - Spring Boot Test Application
+
+Visit the Site: https://springboottest-production-2ee2.up.railway.app
 
 A Spring Boot web application that integrates with the [Agify.io API](https://agify.io) to estimate a person's age based on their first name. The application provides a simple, user-friendly interface for entering names and viewing age estimates.
 
@@ -10,8 +12,3 @@ A Spring Boot web application that integrates with the [Agify.io API](https://ag
 - **Thymeleaf** (Template Engine)
 - **Bootstrap 5** (Frontend Framework)
 - **RestTemplate** (HTTP Client)
-
-### Quick Deploy Script
-```bash
-./deploy.sh deploy
-```
