@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "java -jar target/agify-app-1.0.0.jar",
+    "startCommand": "mvn spring-boot:run",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }

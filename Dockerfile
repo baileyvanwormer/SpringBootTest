@@ -4,9 +4,12 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml
+# Copy pom.xml first for better caching
+COPY pom.xml ./
+
+# Copy Maven wrapper
 COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
+COPY mvnw ./
 
 # Make Maven wrapper executable
 RUN chmod +x ./mvnw

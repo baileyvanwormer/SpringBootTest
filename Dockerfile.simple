@@ -1,0 +1,16 @@
+# Simple Dockerfile for Railway deployment
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+# Copy everything
+COPY . .
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
+
+# Expose port
+EXPOSE 8080
+
+# Run the application
+CMD ["java", "-jar", "target/agify-app-1.0.0.jar"]
